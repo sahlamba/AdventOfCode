@@ -1,5 +1,4 @@
-import fs from 'fs'
-import readline from 'readline'
+import { processLineByLine } from '../../utils/index.js'
 
 class Solution {
   static count = -1
@@ -14,20 +13,15 @@ class Solution {
 }
 
 async function solve() {
-  const FILE = '/2021/day1/input.txt'
-
-  const fileStream = fs.createReadStream(process.cwd() + FILE)
-
-  const rl = readline.createInterface({
-    input: fileStream,
-    crlfDelay: Infinity,
-  })
-
-  for await (const line of rl) {
-    Solution.countMeasurementIncreases(Number.parseInt(line))
-  }
-
-  console.info(Solution.count)
+  await processLineByLine(
+    '/2021/day1/input.txt',
+    (line) => {
+      Solution.countMeasurementIncreases(Number.parseInt(line))
+    },
+    () => {
+      console.info(Solution.count)
+    }
+  )
 }
 
 solve()

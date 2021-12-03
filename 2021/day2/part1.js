@@ -1,5 +1,4 @@
-import fs from 'fs'
-import readline from 'readline'
+import { processLineByLine } from '../../utils/index.js'
 
 class Solution {
   static x = 0
@@ -30,20 +29,15 @@ class Solution {
 }
 
 async function solve() {
-  const FILE = '/2021/day2/input.txt'
-
-  const fileStream = fs.createReadStream(process.cwd() + FILE)
-
-  const rl = readline.createInterface({
-    input: fileStream,
-    crlfDelay: Infinity,
-  })
-
-  for await (const line of rl) {
-    Solution.move(Solution.parseInput(line))
-  }
-
-  console.info(Solution.result())
+  await processLineByLine(
+    '/2021/day2/input.txt',
+    (line) => {
+      Solution.move(Solution.parseInput(line))
+    },
+    () => {
+      console.info(Solution.result())
+    }
+  )
 }
 
 solve()
