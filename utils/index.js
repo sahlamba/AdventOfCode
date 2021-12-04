@@ -15,3 +15,18 @@ export async function processLineByLine(filePath, forEachLine, endOfProcess) {
 
   endOfProcess()
 }
+
+export function readFile(filePath) {
+  return new Promise((resolve) => {
+    let fileContent = ''
+    processLineByLine(
+      filePath,
+      (line) => {
+        fileContent += `${line}\n`
+      },
+      () => {
+        resolve(fileContent)
+      }
+    )
+  })
+}
