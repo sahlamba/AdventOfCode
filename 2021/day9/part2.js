@@ -1,4 +1,5 @@
-import { processLineByLine } from '../../utils/index.js'
+import fs from 'fs'
+import { processLineByLine, writeFile } from '../../utils/index.js'
 
 class Solution {
   static grid = []
@@ -87,6 +88,20 @@ class Solution {
     basins.sort((a, b) => b - a) // DESC
     return basins[0] * basins[1] * basins[2]
   }
+
+  static async publishGrid() {
+    let content = '<div id="grid">'
+    this.grid.map((row, i) => {
+      content += `<div>${row
+        .map(
+          (point, j) =>
+            `<span id="${i},${j}" style="display: inline-block; width:1rem; height:1rem;">${point}</span>`
+        )
+        .join('')}</div>`
+    })
+    content += '</div>'
+    await writeFile('/2021/day9/visualization/grid.html', content)
+  }
 }
 
 async function solve() {
@@ -95,8 +110,9 @@ async function solve() {
     (line) => {
       Solution.parseLine(line)
     },
-    () => {
+    async () => {
       console.info(Solution.result())
+      // await Solution.publishGrid()
     }
   )
 }
