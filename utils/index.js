@@ -31,7 +31,7 @@ export function readFile(filePath) {
   })
 }
 
-export function writeFile(filePath, fileContent, flag) {
+export function writeFile(filePath, fileContent) {
   return new Promise((resolve, reject) => {
     fs.writeFile(
       process.cwd() + filePath,

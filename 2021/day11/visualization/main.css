@@ -1,0 +1,45 @@
+html {
+  background-color: #3369a1;
+}
+
+body {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+  font-family: sans-serif;
+  color: white;
+  margin: 40px 0 0 0;
+}
+
+#grid {
+  width: 40rem;
+  margin: 40px auto;
+}
+
+#run-button {
+  border: 1px solid #0066cc;
+  background-color: #0099cc;
+  color: #ffffff;
+  padding: 5px 10px;
+}
+
+#run-button:hover {
+  border: 1px solid #0099cc;
+  background-color: #00aacc;
+  color: #ffffff;
+  padding: 5px 10px;
+}
+
+#run-button:disabled,
+#run-button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.octopus {
+  display: inline-block !important;
+  margin: 0.5rem;
+}

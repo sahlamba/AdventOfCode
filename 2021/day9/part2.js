@@ -1,4 +1,3 @@
-import fs from 'fs'
 import { processLineByLine, writeFile } from '../../utils/index.js'
 
 class Solution {
